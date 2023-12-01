@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 
 int get_double_digit(const std::string& line) {
   char first_digit = '\0';
@@ -15,6 +16,14 @@ int get_double_digit(const std::string& line) {
     }
   }
 
+  if (first_digit == '\0' && second_digit == '\0') {
+    return 0;
+  }
+
+  if (second_digit == '\0') {
+    second_digit = first_digit;
+  }
+
   return (first_digit - '0') * 10 + (second_digit - '0');
 }
 
@@ -23,7 +32,7 @@ int main() {
     
     int final_sum = 0;
     std::string current_line;
-    while (getline(input_file, current_line)) {
+    while (std::getline(input_file, current_line)) {
       final_sum += get_double_digit(current_line);
     }
 
